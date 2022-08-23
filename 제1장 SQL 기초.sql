@@ -47,6 +47,76 @@ update `User1` set
 delete from `User1` where `uid`= 'A101';
 delete from `User1` where `uid`='A102' and `age`=23;
 delete from `User1` where `age`>=30;
+
 #실습1-7
+create table `tblUser` (
+		`userId` varchar(10), 
+		`userName` varchar(10), 
+        `userHp` char(13), 
+        `userAge` tinyint,
+        `userAddr` varchar(20)
+);
+
+create table `tblProduct` (
+		`proCode` int, 
+		`proName` varchar(10), 
+        `proPrice` int, 
+        `proAmount` int,
+        `proCompany` varchar(10),
+        `proMakeDate` date
+);
+
 #실습1-8
+insert into `tblUser` values('P101', '김유신', '010-1234-1001', 25, '서울시 중구');
+insert into `tblUser` values('P102', '김춘추', '010-1234-1002', 23, '부산시 금정구');
+insert into `tblUser` (`userId`, `userName`, `userAge`, `userAddr`) values('P103', '장보고', 31, '경기도 광주군');
+insert into `tblUser` set
+				`userId`='P104',
+                `userName`='강감찬',
+                `userAddr`='경남 창원시';
+insert into `tblUser` set
+				`userId`='P1-5',
+                `userName`='이순신',
+                `userHp`='010-1234-1005',
+                `userAge`=50;
+                
+insert into `tblproduct` values(1,'냉장고', 800, 10, 'LG', '2022-01-06');
+insert into `tblproduct` values(2, '노트북', 1200, 20, '삼성', '2022-01-06');
+insert into `tblproduct` values(3, 'TV', 1400, 6, 'LG', '2022-01-06');
+insert into `tblproduct` values(4, '세탁기', 1000, 8, 'LG', '2022-01-06');
+insert into `tblproduct` set
+				`proCode`= 5,
+                `proName`='컴퓨터',
+                `proPrice`= 1100,
+                `proAmount`= 0;
+insert into `tblproduct` set
+				`proCode`= 6,
+                `proName`='휴대폰',
+                `proPrice`= 900,
+                `proAmount`= 102,
+                `proCompany`= '삼성',
+                `proMakeDate`='2022-01-06';
+
 #실습1-9
+select * from `tbluser`;
+select `userName` from `tbluser`;
+select `userName`, `userHp` from `tbluser`;
+select * from `tbluser` where `userId`='p102';
+select * from `tbluser` where `userId`='p104' or `userId`='p105';
+select * from `tbluser` where `userAddr`='신라';
+select * from `tbluser` where `userAge`> 30;
+select * from `tbluser` where `userHp` is null;
+update `tbluser` set `userAge`=42 where `userId`='p104';
+update `tbluser` set `userAddr`='경남 김해시' where `userId`='p105';
+
+select * from `tblproduct`;
+select `proname` from `tblproduct`;
+select `proname`, `proprice` from `tblproduct`;
+select * from `tblproduct` where `proCompany`='LG';
+select * from `tblproduct` where `proCompany`='삼성';
+
+update `tblproduct` set 
+						`proCompany`='삼성',
+                        `proMakeDate`='2021-01-01'
+					where 
+						`proCode`='5';
