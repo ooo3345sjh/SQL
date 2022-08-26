@@ -412,8 +412,75 @@ order by `year` asc, `합계` desc;
 
 
 ##테이블 결합
+#내부 조인(INNER JOIN)
 select * from `sales` inner join `member` on `sales`.uid = `member`.uid;
-select * from `sales` inner join `department`
+select * from `member` inner join `department` on `member`.dep = `department`.depNO;
+
+select * from `sales` as `a` join `member` as `b` on a.uid = b.uid;
+select * from `member` as `a` join `department` as `b` on a.dep = b.depNO;
+
+select * from `sales` as a, `member` as b where a.uid = b.uid;
+select * from `member` as a, `department` as b where a.dep = b.depNo;
+
+select a.`seq`, a.`uid`, `sale`, `name`, `pos` from `sales` as a
+join `member` as b on a.`uid` = b.`uid`;
+select a.`seq`, a.`uid`, `sale`, `name`, `pos` from `sales` as a
+join `member` as b using (uid);
+
+#USING()으로 조인을 할 경우 두테이블의 칼럼이 중복되서 나오지 않고 하나만 나온다.
+select * from `sales` as a
+join `member` as b using (uid); 
+
+select a.`seq`, a.`uid`, `sale`, `name`, `pos` from `sales` as a
+join `member` as b on a.`uid` = b.`uid`;
+
+select a.`seq`, a.`uid`, b.`name`, b.`pos`, `year`, sum(sale) as `합계` from `sales` as a
+join `member` as b on a.`uid` = b.`uid`
+group by a.`uid`, a.`year` having `합계` >= 100000
+order by a.`year` asc, `합계` desc;
+
+select * from `sales` as a
+join `member` as b on a.`uid` = b.`uid`
+join `department` as c on b.`dep` = c.`depNO`;
+select a.`seq`, a.`uid`, a.`sale`, b.`name`, b.`pos`, c.`name`from `sales` as a
+join `member` as b on a.`uid` = b.`uid`
+join `department` as c on b.`dep` =  c.depNO;
+select a.`seq`, a.`uid`, a.`sale`, b.`name`, b.`pos`, c.`name` from `sales` as a
+join `member` as b on a.`uid` = b.`uid`
+join `department` as c on b.`dep` = c.`depNO`
+where `sale` > 100000
+order by `sale` desc; 
+
+#외부 조인(INNER JOIN)
+select * from `sales` as a left join `member` as b on a.`uid` = b.`uid`;
+select * from `sales` as a right join `member` as b on a.`uid` = b.`uid`;
+select a.`seq`, a.`uid`, `sale`, `name`, `pos` from `sales` as a
+left join `member` as b using(uid);
+
+select a.`seq`, a.`uid`, `sale`, `name`, `pos` from `sales` as a
+right join `member` as b using(uid);
+
+##실습 4-15 모든 직원의 아이디, 이름, 직급, 부서명을 조회하시오.
+select a.`uid`, a.`name`, a.`pos`, b.`name` from `member` as a 
+join `department` as b on a.`dep` = b.`depNo`;
+
+##실습 4-16 '김유신' 직원의 2019년도 매출의 합을 조회하시오.
+select `name`, `year`, sum(sale) as `매출합계` from `member` as a 
+join `sales` as b on a.`uid` = b.`uid`
+group by `year`, `name`
+having `name` = '김유신' and `year` = 2019; 
+
+##실습 4-16 2019년 50,000이상 매출에 대해 직원별 매출의 합이 100,000원 이상인 직원이름, 
+##         부서명, 직급, 년도 매출 합을 조회하시오. (단, 매출 합이 큰 순서부터 정렬)
+select b.`name`, c.`name`, b.`pos`, sum(`sale`) as `매출 합계`
+from `sales` as a 
+join `member` as b on a.`uid` = b.`uid` 
+join `department` as c on b.`dep` = c.`depNO`
+where a.`sale` >= 50000 and `year` = 2019
+group by a.`uid`
+having sum(a.`sale`) >= 100000
+order by sum(a.`sale`) desc;
+
 
 
 
