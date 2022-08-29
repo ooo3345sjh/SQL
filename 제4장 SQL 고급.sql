@@ -270,7 +270,7 @@ where `sale` > 100000
 order by `sale` desc;
 
 
-##실습 4-14
+##실습 4-14 외부조인(LEFT, RIGHT JOIN)
 select * from `sales` as a
 right join `member` as b
 on a.uid = b.uid
