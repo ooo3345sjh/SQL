@@ -36,7 +36,7 @@ create table `Customer` (
 				`orderDate` datetime not null
  );
  
-#실습 1-3
+#실습 1-3 
 #고객 테이블에 데이터 추가
 insert into `Customer` values('c101', '김유신', '010-1234-1001', '김해시 봉황동', '2022-01-01');
 insert into `Customer` values('c102', '김춘추', '010-1234-1002', '경주시 보문동', '2022-01-02');
@@ -143,7 +143,6 @@ select `orderProduct` as `주문 상품번호`, sum(`orderCount`) as `총 주문
 group by `orderProduct`
 order by `orderProduct`;
 
-select * from `product`;
 #실습 1-26 제품 테이블에서 제조업체별 제조한 제품의 개수와 제품 중 가장 비싼 단가를 조회하시오.
 select `company` as `제조업체`, count(*) as `제품수`, max(`price`) as `최고가` from `product`
 group by `company`
@@ -152,9 +151,22 @@ order by `company`;
 #실습 1-27 제품 테이블에서 제품을 2개 이상 제조한 제조업체별로 제품의 개수와 제품 중 가장 비싼 단가를 조회하시오.
 select `company` as `제조업체`, count(*) as `제품수`, max(`price`) as `최고가` from `product`
 group by `company`
-having compan;
+having count(*) >= 2;
 
-#실습 1-28
-#실습 1-29
-#실습 1-30
-#실습 1-30
+#실습 1-28 주문 테이블에서 각 주문고객이 주문한 제품의 총 주문수량을 주문 제품별로 조회하시오.
+select `orderProduct`, `orderId`, sum(orderCount) as `총 주문수량` from `Order`
+group by `orderProduct`, `orderId`
+order by `orderProduct`;
+
+#실습 1-29 'c102' 고객이 주문한 제품의 이름을 조회하시오.
+select `orderId`, `prodName` from `Order` as a
+join `product` as b on a.`orderProduct` = b.`prodNo`
+where `orderId` = 'c102';
+
+select * from `order`;
+select * from `product`;
+#실습 1-30 주문일자가 7월 3일인 고객의 아이디, 이름, 상품명 그리고 주문 날짜시간을 조회하시오.
+select `custId`, `name`, `prodName`, `orderDate` from `customer` as a
+join `order` as b on a.`custId` = b.`orderId`
+join `product` as c on b.`orderProduct` = c.`prodNo`
+where Month(`orderDate`) = '07' and DAY(`orderDate`) = '03';
