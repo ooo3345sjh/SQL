@@ -122,7 +122,7 @@ select * from `customer` order by `rdate` desc;
 
 #실습 1-20 주문 테이블에서 수량이 3개 이상인 주문내용을 조회하시오. 단 주문 수량으로 내림차순 정렬하고,
 #		  수량이 같으면 제품번호를 기준으로 오름차순으로 정렬하시오.
-select * from `product`
+select * from `Order`
 where `orderCount` >= 3 
 order by `orderCount` desc, `orderProduct` asc;
  
@@ -163,10 +163,9 @@ select `orderId`, `prodName` from `Order` as a
 join `product` as b on a.`orderProduct` = b.`prodNo`
 where `orderId` = 'c102';
 
-select * from `order`;
-select * from `product`;
 #실습 1-30 주문일자가 7월 3일인 고객의 아이디, 이름, 상품명 그리고 주문 날짜시간을 조회하시오.
 select `custId`, `name`, `prodName`, `orderDate` from `customer` as a
 join `order` as b on a.`custId` = b.`orderId`
 join `product` as c on b.`orderProduct` = c.`prodNo`
 where Month(`orderDate`) = '07' and DAY(`orderDate`) = '03';
+# where substr(`orderDate`, 1, 10) = '2022-07-03';
