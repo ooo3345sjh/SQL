@@ -123,7 +123,7 @@ order by `a_balance` desc limit 1;
 select * from `bank_transaction` where `t_dist` in(1,2)
 order by `t_dist`, `t_amount`desc;
 
-#실습2-20 거래내역에서 입금 건수, 출금 건수, 조회 건수를 조회하시오.
+#실습2-20 거래내역에서 입금 건수, 출금 건수, 조회 건수를 조회하시오. (여기서 then 이하는 의미 없음.)
 select 
 	count(case when `t_dist` = 1 then 1 end) as `입금 건수`, 
     count(case when `t_dist` = 2 then 1 end) as `출금 건수`, 
@@ -231,5 +231,5 @@ from `bank_transaction` as a
 join `bank_account`as b on a.t_a_no = b.a_no 
 join `bank_customer` as c on b.a_c_no = c.c_no
 where `t_dist` in(1,2) and `c_dist` = 1
-group by `a_no`
+group by `c_no`
 order by `t_dist`, `거래건수` desc;
