@@ -103,20 +103,22 @@ select * from `bank_transaction` where `t_dist` = 1 ;
 select * from `bank_transaction` where `t_dist` = 2 order by `t_amount` desc;
 
 #실습2-15 입금액의 총합과 평균을 구하시오.
-select sum(t_amount) as `입금총합`, avg(t_amount) as `입금평균`
+select 
+	sum(t_amount) as `입금총합`, 
+    avg(t_amount) as `입금평균`
 from `bank_transaction`
 where `t_dist` = 1;
 
 #실습2-16 출금액의 가장 큰 금액과 가장 작은 금액을 구하시오.
 select max(t_amount) as `큰 금액`, min(t_amount) as `작은 금액`
 from `bank_transaction`
-where `t_dist`=2;
+where `t_dist` = 2;
 
 #실습2-17 자유저축 예금계좌에서 큰 잔고액 순으로 조회하시오.
 select * from `bank_account` where `a_item_name` = '자유저축예금' order by `a_balance` desc;
 
 #실습2-18 가장 많은 잔고를 보유한 자유저축 예금계좌를 조회하시오.
-select * from `bank_account` where `a_item_name` = '자유저축예금'
+select * from `bank_account` where `a_item_dist` = 'S1'
 order by `a_balance` desc limit 1;
 
 #실습2-19 거래내역에서 입금액과 출금액이 각각 큰 순서로 조회하시오.
@@ -126,7 +128,7 @@ order by `t_dist`, `t_amount`desc;
 #실습2-20 거래내역에서 입금 건수, 출금 건수, 조회 건수를 조회하시오. (여기서 then 이하는 의미 없음.)
 select 
 	count(case when `t_dist` = 1 then 1 end) as `입금 건수`, 
-    count(case when `t_dist` = 2 then 1 end) as `출금 건수`, 
+    count(if(`t_dist`= 2, 1, null)) as `출금 건수`, 
     count(case when `t_dist` = 3 then 1 end) as `조회 건수`
 from `bank_transaction`;
 
@@ -137,7 +139,7 @@ select
 		when `t_dist` = 1 then '입금'
 		when `t_dist` = 2 then '출금'
 		when `t_dist` = 3 then '조회'
-        end as `type`, 
+	end as `type`, 
 	`t_a_no`,
     `t_amount`
 from `bank_transaction`;
@@ -164,12 +166,12 @@ group by `t_a_no`
 having sum(`t_amount`) >= 100000
 order by `합계` desc;
 
-#실습2-25 게좌 테이블과 곡객 테이블을 결합 하시오.
+#실습2-25 계좌 테이블과 고객 테이블을 결합 하시오.
 select * from `bank_account` as a
 join `bank_customer` as b 
 on a.`a_c_no` = b.`c_no`;
 
-#실습2-26 아래 그림과 같이 조회하시오.
+#실습2-26 아래 그림과 같이 조회 하시오.
 select 
 	`a_no` as `계좌번호`, 
 	`a_item_name` as `계좌이름`,
@@ -188,7 +190,7 @@ on a.`t_a_no` = b.`a_no`;
 select * from `bank_account`;
 select * from `bank_transaction`;
 
-#실습2-28 아래 그림과 같이 조회하시오.
+#실습2-28 아래 그림과 같이 조회 하시오.
 select 
 	`t_no` as `거래번호`,
 	`t_a_no` as `계좌번호`,
@@ -215,18 +217,15 @@ join `bank_customer` as c on b.a_c_no = c.c_no
 where `t_dist` = 1
 order by `t_amount` desc;
 
-select * from `bank_customer`;
-select * from `bank_transaction`;
-select * from `bank_account`;
-#실습2-30 거래구분이 입금, 출금이고 개인 고객을 대상으로 거래건수를 아래와 같이 조회하시오.
-#		 단, 거래구분은 작은 순서로 거래건수는 큰순서로 정렬하시오.
+#실습2-30 거래구분이 입금, 출금이고 개인 고객을 대상으로 거래건수를 아래와 같이 조회 하시오.
+#		 단, 거래구분은 작은 순서로 거래건수는 큰순서로 정렬 하시오.
 select 
 	`t_no`,
     `a_no`,
     `c_no`,
     `t_dist`,
     `a_item_name`,
-    `c_name`, count(`t_no`) as `거래건수`
+    `c_name`, count(`c_no`) as `거래건수`
 from `bank_transaction` as a
 join `bank_account`as b on a.t_a_no = b.a_no 
 join `bank_customer` as c on b.a_c_no = c.c_no
