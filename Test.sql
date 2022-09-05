@@ -1,6 +1,6 @@
-insert into `company` values ('그린컴퓨터', '홍길동', '051-111-1001');
-insert into `company` values ('꿈나라', '아무개', '031-222-1001');
-insert into `company` values ('행복', '홍길동', '051-333-1001');
+insert into `publisher` values ('그린컴퓨터', '홍길동', '051-111-1001');
+insert into `publisher` values ('꿈나라', '아무개', '031-222-1001');
+insert into `publisher` values ('행복', '홍길동', '051-333-1001');
 
 insert into `book` values ('b101', '소나기', 12000, '그린컴퓨터');
 insert into `book` values ('b102', '행복', 9000, '꿈나라');
