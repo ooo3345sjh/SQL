@@ -46,9 +46,15 @@
     - 실습 4-12 테이블 합치기
     - 실습 4-13 내부조인(INNER JOIN)
     - 실습 4-14 외부조인(LEFT, RIGHT JOIN)
-
+    
+## 제5장.데이터 모델링 실습
+    - 실습 1 erd_company
+    - 실습 2 erd_bookstore
+    - 실습 3 java2_university
+    
 ## SQL 연습문제1
 ## SQL 연습문제2
 ## SQL 연습문제3
 ## SQL 연습문제4
+
 
