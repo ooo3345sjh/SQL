@@ -1,7 +1,7 @@
 ## 날짜 : 2022/09/08
 ## 이름 : 서정현
 ## 내용 : Database 모델링 실습(4)
-
+ 
 #진료과 테이블에 데이터 입력하기
 insert into `departments` values('101', '소아과', '김유신', '051-123-0101');
 insert into `departments` values('102', '내과', '김춘추', '051-123-0102');
