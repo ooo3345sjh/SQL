@@ -1,3 +1,8 @@
+##날짜 : 2022/09/07
+##이름 : 서정현
+##내용 : Database 모델링 실습(3)
+
+#학과 테이블에 데이터 입력하기
 insert into `department` values(10,'국어국문학과', ' 051-510-1010');
 insert into `department` values(11,'영어영문학과', ' 051-510-1011');
 insert into `department` values(20,'경영학과', ' 051-510-1020');
@@ -11,6 +16,7 @@ insert into `department` values(40,'기계공학과', ' 051-510-1040');
 insert into `department` values(41,'전자공학과', ' 051-510-1041');
 insert into `department` values(42,'컴퓨터공학과', ' 051-510-1042');
 
+#교수 테이블에 데이터 입력하기
 insert into `professor` values('P10101', 10, '김유신', '750120-1234567', '010-1101-1976', 'kimys@hg.ac.kr', '서울');
 insert into `professor` values('P10102', 10, '계백', '740610-1234567', '010-1102-1975', 'gaeback@hg.ac.kr', '서울');
 insert into `professor` values('P11101', 11, '김관창', '880529-1234567', '010-1103-1989', 'kwanch@hg.ac.kr', '서울');
@@ -24,7 +30,7 @@ insert into `professor` values('P40101', 40, '이이', '910906-1234567', '010-71
 insert into `professor` values('P40102', 40, '이황', '881208-1234567', '010-7104-1989', 'hwang@hg.ac.kr', '서울');
 insert into `professor` values('P42103', 42, '송상현', '760313-1234567', '010-8101-1977', 'ssh@hg.ac.kr', '서울');
 
-
+#학생 테이블에 데이터 입력하기
 insert into `students` values('20101001', 10, 'P10101' ,'정우성' , '760121-1234567', '010-1101-7601', null, '서울');
 insert into `students` values('20101002', 10, 'P10101' ,'이정재' , '750611-1234567', '010-1102-7506', null, '서울');
 insert into `students` values('20111011', 11, 'P11103' ,'전지현' , '890530-1234567', '010-1103-8905', 'jjh@naver.com', '서울');
@@ -38,7 +44,7 @@ insert into `students` values('22401001', 40, 'P40101' ,'강호동' , '920907-12
 insert into `students` values('22401002', 40, 'P40101' ,'조인성' , '891209-1234567', '010-7104-8912', 'join@gmail.com', '서울');
 insert into `students` values('22421003', 42, 'P42103' ,'강동원' , '770314-1234567', '010-8101-7703', 'dong@naver.com', '서울');
 
-
+#강좌 테이블에 데이터 입력하기
 insert into `lecture` values('101001', 'P10101', '대학 글쓰기', 2, 10, '본102');
 insert into `lecture` values('101002', 'P10102', '한국어음운론', 3, 30, '본102');
 insert into `lecture` values('101003', 'P10102', '한국현대문학사', 3, 30, '본103');
@@ -50,7 +56,7 @@ insert into `lecture` values('311003', 'P31104', '기초 통계학', 3, 26, '별
 insert into `lecture` values('401019', 'P40101', '기계역학', 3, 36, '공학관 102');
 insert into `lecture` values('421012', 'P42103', '데이터베이스', 3, 32, '공학관 103');
 
-
+#수강 테이블에 데이터 입력하기
 insert into `register` (`stdNo`, `lecNo`, `proNo`)values('20101001', '101001', 'P10101');
 insert into `register` (`stdNo`, `lecNo`, `proNo`)values('20101001', '101002', 'P10102');
 insert into `register` (`stdNo`, `lecNo`, `proNo`)values('20111013', '111011', 'P11103');
