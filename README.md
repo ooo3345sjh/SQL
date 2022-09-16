@@ -52,6 +52,7 @@
     - 실습 2 erd_bookstore
     - 실습 3 java2_university
     - 실습 4 java2_hospital
+    - 실습 5 java2_Shoppingmall
     
 ## SQL 연습문제1
 ## SQL 연습문제2
