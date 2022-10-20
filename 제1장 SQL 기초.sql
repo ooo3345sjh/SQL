@@ -5,6 +5,8 @@
 #실습1-1 데이터베이스 생성 및 제거
 create database `UserDB`;
 drop database `UserDB`;
+create database `java2dB`;
+drop database `java2dB`;
 
 #실습1-2 테이블 생성 및 제거
 create table `User1` (
