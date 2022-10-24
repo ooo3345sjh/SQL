@@ -2,7 +2,7 @@
 #이름 : 서정현
 #내용 : 제4장 SQL 고급
 
-
+create database `java2db`;
 ##실습 4-1 
 
 #직원 테이블
