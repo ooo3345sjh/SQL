@@ -57,3 +57,5 @@ CREATE TABLE `board_file` (
 SELECT MD5('1234');
 SELECT SHA1('1234');
 SELECT SHA2('abcv', 256);
+
+SELECT * FROM `board_user` WHERE `uid`='sjh940520' and `pass`=SHA2('ewq321!', 256);`order`

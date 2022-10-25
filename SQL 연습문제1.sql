@@ -169,3 +169,17 @@ join `order` as b on a.`custId` = b.`orderId`
 join `product` as c on b.`orderProduct` = c.`prodNo`
 where Month(`orderDate`) = '07' and DAY(`orderDate`) = '03';
 # where substr(`orderDate`, 1, 10) = '2022-07-03';
+
+select o.orderNo, c.name, p.prodName, o.orderCount, o.orderDate from `order` as o 
+join `customer` as c on o.orderid = c.custid
+join `product` as p on o.orderProduct = p.prodNo;
+
+INSERT INTO `order` SET
+		`orderId`='c101', 	
+		       `orderProduct`=2, 	
+		       `orderCount`=3, 	
+		       `orderDate`= NOW();
+
+UPDATE `product` SET `stock`=`stock`- (Select `orderCount` from `order` order by orderDate desc limit 1)   WHERE `prodNo`= 2; 
+
+Select `orderCount` from `order` order by orderDate desc limit 1;
