@@ -59,3 +59,9 @@ SELECT SHA1('1234');
 SELECT SHA2('abcv', 256);
 
 SELECT * FROM `board_user` WHERE `uid`='sjh940520' and `pass`=SHA2('ewq321!', 256);`order`
+
+INSERT INTO `board_article` (`title`,`content`,`uid`,`regip`,`rdate`)
+SELECT `title`,`content`,`uid`,`regip`,`rdate` FROM `board_article`;
+
+SELECT COUNT(`no`) FROM `board_article`;
+
