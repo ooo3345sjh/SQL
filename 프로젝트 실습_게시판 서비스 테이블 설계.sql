@@ -58,10 +58,17 @@ SELECT MD5('1234');
 SELECT SHA1('1234');
 SELECT SHA2('abcv', 256);
 
-SELECT * FROM `board_user` WHERE `uid`='sjh940520' and `pass`=SHA2('ewq321!', 256);`order`
+SELECT * FROM `board_user` WHERE `uid`='sjh940520' and `pass`=SHA2('ewq321!', 256);`java2_boardjava2_boardorder`
 
 INSERT INTO `board_article` (`title`,`content`,`uid`,`regip`,`rdate`)
 SELECT `title`,`content`,`uid`,`regip`,`rdate` FROM `board_article`;
 
 SELECT COUNT(`no`) FROM `board_article`;
 
+SELECT a.*, f.fno, f.parent AS pno, f.newName, f.oriName, f.download  FROM `board_article` a LEFT JOIN `board_file` f
+ON a.`no` = f.parent;
+
+SELECT *  FROM `board_article` a JOIN `board_file` f
+ON a.`no` = f.parent;
+
+UPDATE `board_article``` SET `hit` = `hit` +1 WHERE `no` = 1;
