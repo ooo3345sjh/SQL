@@ -54,11 +54,22 @@ CREATE TABLE `board_file` (
 	`download` INT DEFAULT 0
 );
 
+#댓글  테이블 생성
+CREATE TABLE `board_comment` (
+	`no` INT AUTO_INCREMENT PRIMARY KEY,
+	`parent`INT NOT null,
+	`comment` TEXT NOTboard_comment null,
+	`uid` VARCHAR(20) NOT null,
+	`nick` VARCHAR(20) NOT NULL,
+	`regip`VARCHAR(100) NOT NULL,
+	`rdate` DATETIME NOT null
+);
+
 SELECT MD5('1234');
 SELECT SHA1('1234');
 SELECT SHA2('abcv', 256);
 
-SELECT * FROM `board_user` WHERE `uid`='sjh940520' and `pass`=SHA2('ewq321!', 256);`java2_boardjava2_boardorder`
+SELECT * FROM `board_user` WHERE `uid`='sjh940520' and `pass`=SHA2('ewq321!', 256);
 
 INSERT INTO `board_article` (`title`,`content`,`uid`,`regip`,`rdate`)
 SELECT `title`,`content`,`uid`,`regip`,`rdate` FROM `board_article`;
@@ -72,3 +83,5 @@ SELECT *  FROM `board_article` a JOIN `board_file` f
 ON a.`no` = f.parent;
 
 UPDATE `board_article``` SET `hit` = `hit` +1 WHERE `no` = 1;
+
+SELECT MAX(`no`) FROM `board_comment`boarddbboarddb
