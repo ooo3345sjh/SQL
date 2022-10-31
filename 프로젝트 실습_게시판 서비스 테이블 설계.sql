@@ -58,8 +58,8 @@ CREATE TABLE `board_file` (
 CREATE TABLE `board_comment` (
 	`no` INT AUTO_INCREMENT PRIMARY KEY,
 	`parent`INT NOT null,
-	`comment` TEXT NOTboard_comment null,
-	`uid` VARCHAR(20) NOT null,
+	`comment` TEXT NOT null,
+	`uid` VARCHAR(2board_comment0) NOT null,
 	`nick` VARCHAR(20) NOT NULL,
 	`regip`VARCHAR(100) NOT NULL,
 	`rdate` DATETIME NOT null
@@ -84,4 +84,8 @@ ON a.`no` = f.parent;
 
 UPDATE `board_article``` SET `hit` = `hit` +1 WHERE `no` = 1;
 
-SELECT MAX(`no`) FROM `board_comment`boarddbboarddb
+SELECT MAX(`no`) FROM `board_comment`
+
+SELECT a.*, b.nick form `board_article` a
+join `board_user` b USING(`uid`)
+WHERE `parent` != 0 ORDER BY `no` DESC LIMIT 1;
