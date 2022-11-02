@@ -89,3 +89,11 @@ SELECT MAX(`no`) FROM `board_comment`
 SELECT a.*, b.nick form `board_article` a
 join `board_user` b USING(`uid`)
 WHERE `parent` != 0 ORDER BY `no` DESC LIMIT 1;
+
+# 조인해서 삭제하는 방법
+DELETE a.*, f.* FROM 
+`board_article` AS a
+INNER JOIN 
+`board_file` AS f
+ON a.no = f.parent
+WHERE a.`no`= 141  OR a.`parent`= 141;
