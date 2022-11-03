@@ -97,3 +97,10 @@ INNER JOIN
 `board_file` AS f
 ON a.no = f.parent
 WHERE a.`no`= 141  OR a.`parent`= 141;
+
+# comment 개수 뺴기
+SELECT * FROM 	`board_article`
+WHERE `no` IN (SELECT parent FROM `board_article` WHERE `no`=5164 );
+
+UPDATE `board_article` SET `comment` = `comment` - 1 
+WHERE  `no` IN (SELECT t.parent FROM  (SELECT parent FROM `board_article` WHERE `no`=5164 ) AS t);
