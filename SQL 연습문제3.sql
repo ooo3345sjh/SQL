@@ -51,14 +51,14 @@ insert into `Lecture` values(248, '빅데이터 개론', 3, 20, "본B01");
 insert into `Lecture` values(253, '컴퓨터사고와 코딩', 2, 10, "본B02");
 insert into `Lecture` values(349, '사회복지 마케팅', 2, 50, "본301");
 
-insert into `Register`(`regStdNo`, `regLecNo`) values(20201126, 234);
-insert into `Register`(`regStdNo`, `regLecNo`) values(20201016, 248);
-insert into `Register`(`regStdNo`, `regLecNo`) values(20201016, 253);
-insert into `Register`(`regStdNo`, `regLecNo`) values(20201126, 239);
-insert into `Register`(`regStdNo`, `regLecNo`) values(20210216, 349);
-insert into `Register`(`regStdNo`, `regLecNo`) values(20210326, 349);
-insert into `Register`(`regStdNo`, `regLecNo`) values(20201016, 167);
-insert into `Register`(`regStdNo`, `regLecNo`) values(20220416, 349);
+insert into `Register`VALUES('20201126', 234, 100, 80, 180, 'A');
+insert into `Register`VALUES('20201016', 248, 80, 80, 160, 'B');
+insert into `Register`VALUES('20201016', 253, 90, 90, 180, 'A');
+insert into `Register`VALUES('20201126', 239, 70, 80, 150, 'C');
+insert into `Register`VALUES('20210216', 349, 85, 95, 180, 'A');
+insert into `Register`values('20210326', 349, 50, 40, 90, 'F');
+insert into `Register`VALUES('20201016', 167, 80, 60, 140, 'C');
+insert into `Register`values('20220416', 349, 95, 50, 145, 'C');
 
 #실습3-4 강좌를 조회하시오.
 select * from `lecture`;
@@ -251,3 +251,9 @@ from `student` as a
 join `register` as b on a.stdNo = b.regStdNo
 join `lecture` as c on b.regLecNo = c.lecNo
 group by `stdNo`;
+
+
+SELECT r.*, s.stdname, l.lecname FROM `register` r join
+`student` s ON r.`regStdNo` = s.`stdNo` JOIN
+`lecture` l ON r.regLecNo = l.lecNo
+WHERE r.regStdNo =  '20220416';
