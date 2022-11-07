@@ -104,3 +104,17 @@ WHERE `no` IN (SELECT parent FROM `board_article` WHERE `no`=5164 );
 
 UPDATE `board_article` SET `comment` = `comment` - 1 
 WHERE  `no` IN (SELECT t.parent FROM  (SELECT parent FROM `board_article` WHERE `no`=5164 ) AS t);
+
+
+
+DELETE FROM `board_file` WHERE `parent` = 5323 AND `oriName` = '삽입 이미지' AND
+`newName` IN ('image2022110515452401406218374.jpg', 'image2022110515452401407514215.jpg');
+
+SELECT * FROM
+`board_article` AS a 
+LEFT JOIN 
+`board_comment` AS c  ON a.`no` = c.`parent`  
+LEFT JOIN 
+`board_file` AS f 
+ ON a.`no` = f.`parent`
+ WHERE a.`no`= 5396  OR c.`parent`= 5396;
