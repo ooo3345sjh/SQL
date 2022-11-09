@@ -29,9 +29,9 @@ create table `Register`(
 	`regStdNo` varchar(8) not null, 
     `regLecNo` int not null,
     `regMidScore` int ,
-    `regFinalScore` int default null,
-    `regTotalScore` int default null,
-    `regGrade` char(1) default null
+    `regFinalScore` int DEFAULT 0,
+    `regTotalScore` int DEFAULT 0,
+    `regGrade` char(1) DEFAULT '-'
     );   
     
     
