@@ -3,7 +3,7 @@
 ##내용 : 제2장 테이블 제약조건과 수정
 
 ##실습 2-1 테이블을 생성할 때 기본키(Primary key) 지정하기
-create table `User2`(
+create table `user2`(
 	`uid` varchar(20) primary key,
     `name` varchar(10),
     `hp` char(13),
@@ -11,11 +11,11 @@ create table `User2`(
 );
 
 ##실습 2-2
-insert into `User2` values('a101', '김유신', '010-1234-1001', 25);
-insert into `User2` values('a102', '김춘추', '010-1234-1002', 23);
-insert into `User2` values('a103', '장보고', '010-1234-1003', 33);
-insert into `User2` values('a104', '강감찬', '010-1234-1004', 43);
-insert into `User2` values('a105', '이순신', '010-1234-1005', 53);
+insert into `user2` values('a101', '김유신', '010-1234-1001', 25);
+insert into `user2` values('a102', '김춘추', '010-1234-1002', 23);
+insert into `user2` values('a103', '장보고', '010-1234-1003', 33);
+insert into `user2` values('a104', '강감찬', '010-1234-1004', 43);
+insert into `user2` values('a105', '이순신', '010-1234-1005', 53);
 
 ##실습 2-3 테이블을 생성할 때 고유키(Unique) 지정하기
 create table `user3` (
@@ -26,12 +26,12 @@ create table `user3` (
 );
 
 ##실습 2-4
-insert into `User3` values('a101', '김유신', '010-1234-1001', 25);
-insert into `User3` values('a102', '김춘추', '010-1234-1002', 23);
-insert into `User3` values('a103', '장보고', '010-1234-1003', 33);
-insert into `User3` values('a104', '강감찬', '010-1234-1004', 43);
-insert into `User3` values('a105', '이순신', '010-1234-1005', 53);
-insert into `User3` values('a205', '이순신', '010-1234-2005', 53);
+insert into `user3` values('a101', '김유신', '010-1234-1001', 25);
+insert into `user3` values('a102', '김춘추', '010-1234-1002', 23);
+insert into `user3` values('a103', '장보고', '010-1234-1003', 33);
+insert into `user3` values('a104', '강감찬', '010-1234-1004', 43);
+insert into `user3` values('a105', '이순신', '010-1234-1005', 53);
+insert into `user3` values('a205', '이순신', '010-1234-2005', 53);
 
 ##실습 2-5 테이블 외래키(Foreign key) 지정하기
 create table `Parent` (
@@ -56,7 +56,7 @@ select * from `Parent`;
 select * from `Child`;
 
 ##실습 2-7 테이블을 생성할 때 시퀀스 칼럼 지정
-create table `User4`(
+create table `user4`(
 	`seq`	 int primary key auto_increment,
 	`name` 	 varchar(10),
     `gender` tinyint,
@@ -65,19 +65,19 @@ create table `User4`(
 );
 
 ##실습 2-8
-insert into `User4` (`name`, `gender`, `age`, `addr`) values('김유신', 1, 25, '김해시');
-insert into `User4` set
+insert into `user4` (`name`, `gender`, `age`, `addr`) values('김유신', 1, 25, '김해시');
+insert into `user4` set
 						`name`='신사임당',
 						`gender`=2, 
 						`age`=27,
 						`addr`='강릉시';
                         
-delete from `User4` where `name`='김유신';
+delete from `user4` where `name`='김유신';
 
 select * from `User4`;
 
 ##실습 2-9 Default와 Null값
-create table `User5`(
+create table `user5`(
 	`name` varchar(10) not null,
     `gender` int,
     `age` tinyint default 1,
@@ -85,8 +85,8 @@ create table `User5`(
 );
 
 ##실습 2-10
-insert into `User5` (`name`) values('김유신');
-insert into `User5` set 
+insert into `user5` (`name`) values('김유신');
+insert into `user5` set 
 					`name`='강감찬',
 					`age`= 24, 
                     `addr`='부산시';
@@ -119,14 +119,14 @@ insert into `User5` values('p101', '김유신', 1, 25, '김해시');
 insert into `User5` values('p102', '김춘추', 1, 23, '경주시');
 
 ##실습 2-15 테이블 복사(데이터는 복사 안됨)
-create table `user6` like `user5`;
+create table `user6` like `User5`;
 create table `user7` like `user5`;
 
 select * from `user6`;
 select * from `user7`;
 
 ##실습 2-16 테이블 데이터 복사
-insert into `user6` select * from `user5`;
+insert into `user6` select * from `User5`;
 insert into `user7` (`uid`, `name`, `gender`, `age`) select `uid`, `name`, `gender`, `age` from `user5`;
 
 select * from `user6`;
