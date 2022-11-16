@@ -71,8 +71,9 @@ SELECT SHA2('abcv', 256);
 
 SELECT * FROM `board_user` WHERE `uid`='sjh940520' and `pass`=SHA2('ewq321!', 256);
 
-INSERT INTO `board_article` (`title`,`content`,`uid`,`regip`,`rdate`)
-SELECT `title`,`content`,`uid`,`regip`,`rdate` FROM `board_article`;
+INSERT INTO `board_article` (`cate`, `title`,`content`,`uid`,`regip`,`rdate`)
+SELECT `cate`,`title`,`content`,`uid`,`regip`,`rdate` FROM `board_article`
+WHERE `cate`='market';
 
 SELECT COUNT(`no`) FROM `board_article`;
 
