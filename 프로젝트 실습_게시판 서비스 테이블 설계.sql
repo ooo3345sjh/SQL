@@ -119,3 +119,11 @@ LEFT JOIN
 `board_file` AS f 
  ON a.`no` = f.`parent`
  WHERE a.`no`= 5396  OR c.`parent`= 5396;
+ 
+ 
+ # 팜프로젝트 각 카테고리 최신글 가져오기
+ (SELECT `no`, `title`, `rdate` FROM `board_article` WHERE `cate`= 'grow' ORDER BY `no` DESC LIMIT 5)
+ UNION
+(SELECT `no`, `title`, `rdate` FROM `board_article` WHERE `cate`= 'school' ORDER BY `no` DESC LIMIT 5)
+ UNION
+(SELECT `no`, `title`, `rdate` FROM `board_article` WHERE `cate`= 'story' ORDER BY `no` DESC LIMIT 5);
